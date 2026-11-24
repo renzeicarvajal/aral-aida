@@ -1,11 +1,10 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
   experimental: {
     agentFeedback: true,
+    cacheComponents: false, // 👈 This is the magic fix
   },
-  cacheComponents: true,
   partialPrefetching: true,
   turbopack: {
     rules: {
