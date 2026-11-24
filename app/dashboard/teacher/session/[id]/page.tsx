@@ -3,6 +3,8 @@
 import { useEffect, useState } from 'react'
 import { useRouter, useParams } from 'next/navigation'
 
+export const instant = false
+
 export default function LogSessionPage() {
   const router = useRouter()
   const params = useParams()

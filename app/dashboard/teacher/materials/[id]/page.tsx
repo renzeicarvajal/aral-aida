@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react'
 import { useRouter, useParams } from 'next/navigation'
 
+export const instant = false
 
 export default function ViewMaterialsPage() {
   const router = useRouter()
