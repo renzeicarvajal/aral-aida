@@ -10,7 +10,7 @@ export default function LogSessionPage() {
   const learnerId = params.id as string
 
   const [learnerName, setLearnerName] = useState('')
-  const [date, setDate] = useState(new Date().toISOString().split('T')[0])
+  
   const [status, setStatus] = useState('Present')
   const [accuracy, setAccuracy] = useState('')
   const [comprehension, setComprehension] = useState('')
@@ -27,6 +27,17 @@ export default function LogSessionPage() {
     
   
   const [toast, setToast] = useState<{ message: string; type: 'success' | 'error' } | null>(null)
+
+  
+  const getLocalDateString = () => {
+  const d = new Date()
+  const year = d.getFullYear()
+  const month = String(d.getMonth() + 1).padStart(2, '0')
+  const day = String(d.getDate()).padStart(2, '0')
+    return `${year}-${month}-${day}`
+  }
+
+  const [date, setDate] = useState(getLocalDateString())
 
   useEffect(() => {
     
