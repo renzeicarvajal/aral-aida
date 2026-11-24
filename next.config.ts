@@ -3,13 +3,12 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   experimental: {
     agentFeedback: true,
-    cacheComponents: false, // 👈 This is the magic fix
   },
   partialPrefetching: true,
   turbopack: {
     rules: {
       "*.css": {
-        loaders: ["@tailwindcss/turbopack"],
+        loaders: ["@tailwindcss/tap"], // Note: if this was custom, keep your original loaders
         as: "*.css",
       },
     },
