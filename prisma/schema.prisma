@@ -1,0 +1,58 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        Int      @id @default(autoincrement())
+  username  String   @unique
+  password  String
+  role      String   // "Teacher" or "Head"
+  learners  Learner[]
+  createdAt DateTime @default(now())
+}
+
+model Learner {
+  id           Int          @id @default(autoincrement())
+  name         String
+  grade        Int
+  section      String
+  philIriLevel String       // "Frustration", "Instructional", "Independent"
+  userId       Int
+  user         User         @relation(fields: [userId], references: [id])
+  materials    Material[]
+  progress     Progress[]
+  attendance   Attendance[]
+  createdAt    DateTime     @default(now())
+}
+
+model Material {
+  id          Int      @id @default(autoincrement())
+  content     String
+  questions   String?   
+  learnerId   Int
+  learner     Learner  @relation(fields: [learnerId], references: [id])
+  generatedAt DateTime @default(now())
+}
+
+model Progress {
+  id            Int      @id @default(autoincrement())
+  learnerId     Int
+  learner       Learner  @relation(fields: [learnerId], references: [id])
+  sessionDate   DateTime
+  accuracy      Float
+  comprehension Float
+  notes         String?  
+}
+
+model Attendance {
+  id        Int      @id @default(autoincrement())
+  learnerId Int
+  learner   Learner  @relation(fields: [learnerId], references: [id])
+  date      DateTime
+  status    String   // "Present" or "Absent"
+}
