@@ -40,7 +40,8 @@ export default function LoginPage() {
     <div className="min-h-screen bg-gray-50 flex items-center justify-center p-4">
       <div className="bg-white p-6 sm:p-8 rounded-lg shadow-md w-full max-w-md">
         <h1 className="text-2xl sm:text-3xl font-bold text-center text-blue-600 mb-2">ARAL AIDA</h1>
-        <p className="text-center text-gray-500 mb-6 text-sm sm:text-base">AI-Powered Reading Assessment System</p>
+        <p className="text-center text-gray-500 mb-6 text-sm sm:text-base">An AI-Powered Differentiated Material Generator 
+and Progress Tracker for Grades 7-10 ARAL Reading Teachers (La Paz National High School - Umingan)</p>
         
         <form onSubmit={handleLogin} className="space-y-4">
           <div>
