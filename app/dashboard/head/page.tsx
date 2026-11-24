@@ -128,11 +128,11 @@ export default function HeadDashboard() {
         </div>
       )}
 
-      <nav className="bg-blue-600 text-white p-4 flex justify-between items-center">
-        <h1 className="text-xl font-bold">ARAL AIDA - School Head Dashboard</h1>
-        <div className="flex items-center gap-4">
-          <span>Welcome, {user.username}</span>
-          <button onClick={handleLogout} className="bg-red-500 hover:bg-red-600 px-4 py-2 rounded text-sm font-medium transition-colors">
+      <nav className="bg-blue-600 text-white p-4 flex flex-col sm:flex-row justify-between items-center gap-3">
+        <h1 className="text-lg sm:text-xl font-bold text-center sm:text-left">ARAL AIDA - School Head</h1>
+        <div className="flex flex-wrap justify-center sm:justify-end items-center gap-2 sm:gap-4 w-full sm:w-auto">
+          <span className="text-sm text-blue-100 hidden sm:block">Welcome, {user.username}</span>
+          <button onClick={handleLogout} className="bg-red-500 hover:bg-red-600 px-3 py-2 sm:px-4 sm:py-2 rounded text-xs sm:text-sm font-medium transition-colors whitespace-nowrap">
             Logout
           </button>
         </div>
