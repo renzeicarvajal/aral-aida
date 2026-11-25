@@ -203,13 +203,13 @@ export default function LogSessionPage() {
             <h2 className="text-xl font-bold mb-4 text-gray-800">Recent History</h2>
             <ul className="space-y-3">
               {history.map((log) => (
-                <li key={log.attendanceId || log.progressId} className="flex justify-between items-center border-b pb-3">
-                  <div className="flex-1">
-                    <div className="flex items-center gap-2 mb-1">
+                <li key={log.attendanceId || log.progressId} className="flex flex-col sm:flex-row justify-between items-start sm:items-center border-b pb-4 gap-3">
+                  <div className="w-full sm:flex-1">
+                    <div className="flex flex-wrap items-center gap-2 mb-1">
                       <p className="text-sm font-medium text-gray-700">
                         {new Date(log.sessionDate).toLocaleDateString()}
                       </p>
-                      <span className={`px-2 py-0.5 rounded-full text-xs font-medium ${
+                      <span className={`px-2 py-0.5 rounded-full text-xs font-medium whitespace-nowrap ${
                         log.status === 'Present' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'
                       }`}>
                         {log.status}
@@ -224,23 +224,22 @@ export default function LogSessionPage() {
                       <p className="text-sm text-gray-500 italic">Student was absent</p>
                     )}
                     {log.notes && (
-                      <p className="text-xs text-gray-500 mt-1 italic">"{log.notes}"</p>
+                      <p className="text-xs text-gray-500 mt-1 italic break-words">"{log.notes}"</p>
                     )}
                   </div>
-                  <div className="flex gap-2 ml-4">
-                    
+                  
+                  <div className="flex gap-2 w-full sm:w-auto justify-end sm:justify-start mt-1 sm:mt-0">
                     {log.status === 'Present' && log.progressId && (
                       <button
                         onClick={() => handleEdit(log)}
-                        className="bg-yellow-500 hover:bg-yellow-600 text-white px-3 py-1 rounded text-xs font-medium transition-colors"
+                        className="bg-yellow-500 hover:bg-yellow-600 text-white px-3 py-1.5 rounded text-xs sm:text-sm font-medium transition-colors whitespace-nowrap"
                       >
                         Edit
                       </button>
                     )}
-                    
                     <button
                       onClick={() => setDeleteTarget({ attendanceId: log.attendanceId, progressId: log.progressId })}
-                      className="bg-red-600 hover:bg-red-700 text-white px-3 py-1 rounded text-xs font-medium transition-colors"
+                      className="bg-red-600 hover:bg-red-700 text-white px-3 py-1.5 rounded text-xs sm:text-sm font-medium transition-colors whitespace-nowrap"
                     >
                       Delete
                     </button>
