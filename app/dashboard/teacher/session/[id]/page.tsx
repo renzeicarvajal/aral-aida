@@ -42,9 +42,19 @@ export default function LogSessionPage() {
   useEffect(() => {
     
     const fetchLearner = async () => {
-      const res = await fetch(`/api/learners?id=${learnerId}`)
+      const storedUser = localStorage.getItem('user')
+      if (!storedUser) return
+      
+      const userId = JSON.parse(storedUser).id
+
+      const res = await fetch(`/api/learners?userId=${userId}`)
       const data = await res.json()
-      if (data) setLearner(data)
+      
+      const foundLearner = data.find((l: any) => l.id.toString() === learnerId)
+      
+      if (foundLearner) {
+        setLearner(foundLearner)
+      }
     }
 
     
