@@ -35,14 +35,14 @@ model Material {
   content     String
   questions   String?   
   learnerId   Int
-  learner     Learner  @relation(fields: [learnerId], references: [id])
+  learner     Learner  @relation(fields: [learnerId], references: [id], onDelete: Cascade)
   generatedAt DateTime @default(now())
 }
 
 model Progress {
   id            Int      @id @default(autoincrement())
   learnerId     Int
-  learner       Learner  @relation(fields: [learnerId], references: [id])
+  learner       Learner  @relation(fields: [learnerId], references: [id], onDelete: Cascade)
   sessionDate   DateTime
   accuracy      Float
   comprehension Float
@@ -52,7 +52,7 @@ model Progress {
 model Attendance {
   id        Int      @id @default(autoincrement())
   learnerId Int
-  learner   Learner  @relation(fields: [learnerId], references: [id])
+  learner   Learner  @relation(fields: [learnerId], references: [id], onDelete: Cascade)
   date      DateTime
   status    String   // "Present" or "Absent"
 }
