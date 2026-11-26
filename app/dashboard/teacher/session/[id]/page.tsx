@@ -9,7 +9,7 @@ export default function LogSessionPage() {
   const params = useParams()
   const learnerId = params.id as string
 
-  const [learnerName, setLearnerName] = useState('')
+  const [learner, setLearner] = useState<any>(null)
   
   const [status, setStatus] = useState('Present')
   const [accuracy, setAccuracy] = useState('')
@@ -44,7 +44,7 @@ export default function LogSessionPage() {
     const fetchLearner = async () => {
       const res = await fetch(`/api/learners?id=${learnerId}`)
       const data = await res.json()
-      if (data) setLearnerName(data.name)
+      if (data) setLearner(data)
     }
 
     
@@ -159,7 +159,15 @@ export default function LogSessionPage() {
 
       <div className="max-w-2xl mx-auto bg-white p-6 rounded-lg shadow-md">
         <button onClick={() => router.back()} className="text-blue-600 hover:underline mb-4 block">← Back to Dashboard</button>
-        <h1 className="text-2xl font-bold mb-6 text-gray-800">Log Session for {learnerName}</h1>
+        {learner && (
+          <div className="mb-6 bg-blue-50 border-l-4 border-blue-600 p-4 rounded-r-lg shadow-sm">
+            <p className="text-xs font-bold text-blue-600 uppercase tracking-wider mb-1">Currently Logging Session For:</p>
+            <h2 className="text-2xl font-bold text-gray-800">{learner.name}</h2>
+            <p className="text-sm text-gray-600 mt-1">
+              Grade {learner.grade} - {learner.section} | Level: <span className="font-semibold text-gray-800">{learner.philIriLevel}</span>
+            </p>
+          </div>
+        )}
         
         <form onSubmit={handleSubmit} className="space-y-4">
           <div className="grid grid-cols-2 gap-4">
